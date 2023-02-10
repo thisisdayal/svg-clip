@@ -8,8 +8,11 @@ class ClipNode(Node):
         self.args = args
         self.kwargs = kwargs
 
+        if self.svg_name.strip() == "":
+            raise ValueError('"svg_name" cannot be empty string!')
+
     def __repr__(self) -> str:
         return (
-            f'<{self.__class__.__qualname__} svg_name="{self.svg_name}.svg" '
+            f"<{self.__class__.__qualname__} svg_name='{self.svg_name}.svg' "
             f"args={repr(self.args)} kwargs={repr(self.kwargs)}>"
         )
