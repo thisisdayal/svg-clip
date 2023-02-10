@@ -5,6 +5,7 @@ svg_clip welcomes contributions from the community.
 **You need PYTHON3!**
 
 This instructions are for linux base systems. (Linux, MacOS, BSD, etc.)
+
 ## Setting up your own fork of this repo.
 
 - On github interface click on `Fork` button.
@@ -68,11 +69,12 @@ Run `git push origin my_contribution`
 On github interface, click on `Pull Request` button.
 
 Wait CI to run and one of the developers will review your PR.
+
 ## Makefile utilities
 
 This project comes with a `Makefile` that contains a number of useful utility.
 
-```bash 
+```bash
 ❯ make
 Usage: make <target>
 
@@ -88,7 +90,6 @@ virtualenv:       ## Create a virtual environment.
 release:          ## Create a new tag for release.
 docs:             ## Build the documentation.
 switch-to-poetry: ## Switch to poetry package manager.
-init:             ## Initialize the project based on an application template.
 ```
 
 ## Making a new release
@@ -97,17 +98,17 @@ This project uses [semantic versioning](https://semver.org/) and tags releases w
 Every time a new tag is created and pushed to the remote repo, github actions will
 automatically create a new release on github and trigger a release on PyPI.
 
-For this to work you need to setup a secret called `PIPY_API_TOKEN` on the project settings>secrets, 
+For this to work you need to setup a secret called `PIPY_API_TOKEN` on the project settings>secrets,
 this token can be generated on [pypi.org](https://pypi.org/account/).
 
 To trigger a new release all you need to do is.
 
 1. If you have changes to add to the repo
-    * Make your changes following the steps described above.
-    * Commit your changes following the [conventional git commit messages](https://www.conventionalcommits.org/en/v1.0.0/).
+   - Make your changes following the steps described above.
+   - Commit your changes following the [conventional git commit messages](https://www.conventionalcommits.org/en/v1.0.0/).
 2. Run the tests to ensure everything is working.
-4. Run `make release` to create a new tag and push it to the remote repo.
+3. Run `make release` to create a new tag and push it to the remote repo.
 
 the `make release` will ask you the version number to create the tag, ex: type `0.1.1` when you are asked.
 
-> **CAUTION**:  The make release will change local changelog files and commit all the unstaged changes you have.
+> **CAUTION**: The make release will change local changelog files and commit all the unstaged changes you have.

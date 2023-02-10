@@ -1,5 +1,12 @@
-include LICENSE
-include HISTORY.md
+include CHANGELOG.rst
 include Containerfile
+include README.md
+include LICENSE.rst
+include MANIFEST.in
+include tox.ini
+
 graft tests
 graft svg_clip
+
+global-exclude *.py[co] *.py[cod]
+global-exclude __pycache__
