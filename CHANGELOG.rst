@@ -7,6 +7,7 @@ Changelog
 
 Fix
 ~~~
+- ClipNode must not have no child Nodes. [Dayal Moirangthem]
 - ClipNode no longer accepts empty string value for svg_name. [Dayal
   Moirangthem]
 
@@ -14,6 +15,12 @@ Fix
 
 Other
 ~~~~~
+- Wip: added compilation function for ClipNode. [Dayal Moirangthem]
+
+  Implemented render method for rendering SVG markup with user provided attributes.
+- Wip: added SVGParser for parsing SVG files and extract attributes.
+  [Dayal Moirangthem]
+- Wip: added custom exceptions. [Dayal Moirangthem]
 - Test(passed)!:ClipNode repr test. [Dayal Moirangthem]
 
   - test with all valid arguments
