@@ -1,4 +1,4 @@
-"""Entry point for project_name."""
+"""Entry point for svg_clip."""
 
 from .cli import main  # pragma: no cover
 
