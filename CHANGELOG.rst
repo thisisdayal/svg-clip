@@ -4,6 +4,16 @@ Changelog
 
 (unreleased)
 ------------
+
+Fix
+~~~
+- ClipNode no longer accepts empty string value for svg_name. [Dayal
+  Moirangthem]
+
+  passing empty string value raises ValueError
+
+Other
+~~~~~
 - Test(passed)!:ClipNode repr test. [Dayal Moirangthem]
 
   - test with all valid arguments
