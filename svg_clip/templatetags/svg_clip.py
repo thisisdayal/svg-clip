@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.template import Library, Node, TemplateSyntaxError
 from django.template.context import Context
-from django.utils.regex_helper import _lazy_re_compile
 from django.utils.safestring import mark_safe
 
 import svg_clip
@@ -32,7 +31,8 @@ HEROICONS_DIRS = [
 
 # Patterns
 svgtag = re.compile("^<svg([^<]*)>")
-kwarg_re = _lazy_re_compile(r"(?:([\w-]+)=)?([\"|\'][\w\s-]+[\'|\"])")
+kwarg_re = re.compile(r"(?:([\w-]+)=)?(.+)", re.UNICODE)
+# kwarg_re = _lazy_re_compile(r"(?:([\w-]+)=)?([\"|\'][\w\s-]+[\'|\"])")
 
 
 class ClipNode(Node):
