@@ -36,6 +36,8 @@ kwarg_re = _lazy_re_compile(r"(?:([\w-]+)=)?([\"|\'][\w\s-]+[\'|\"])")
 
 
 class ClipNode(Node):
+    """Implement the functions of clip tag."""
+
     child_nodelists = ()
 
     def __init__(self, svg_name, args: list, kwargs: dict) -> None:
@@ -52,7 +54,6 @@ class ClipNode(Node):
             f"args={repr(self.args)} kwargs={repr(self.kwargs)}>"
         )
 
-    @mark_safe
     def render(self, context: Context) -> str:
         svg_name: str = f"{self.svg_name.resolve(context)}.svg"
         args: list = [arg.resolve(context) for arg in self.args]
@@ -60,19 +61,20 @@ class ClipNode(Node):
 
         svg_icons_dirs = getattr(settings, "SVG_ICONS_DIRS", [])
 
-        # `SVG_ICONS_DIRS` must be a list
+        # `SVG_ICONS_DIRS` must be a list.
         if not isinstance(svg_icons_dirs, list):
             raise ImproperlyConfigured(
                 f"'SVG_ICONS_DIRS' must be list but given "
                 f"{type(svg_icons_dirs).__name__}! "
             )
 
-        # Use default icons if True
-        use_clip_icons = getattr(settings, "USE_CLIP_ICONS", False)
-        if use_clip_icons:
+        # Get attribute `USE_CLIP_ICONS` from settings.
+        # If not set, default value is False.
+        # If True, use default icons(HEROICONS_DIRS).
+        if getattr(settings, "USE_CLIP_ICONS", False):
             svg_icons_dirs += HEROICONS_DIRS
 
-        # Empty `SVG_ICONS_DIRS` should raise error
+        # Empty `SVG_ICONS_DIRS` should raise error.
         if len(svg_icons_dirs) == 0:
             raise ImproperlyConfigured(
                 "No 'SVG_ICONS_DIRS' Found! "
@@ -80,7 +82,7 @@ class ClipNode(Node):
             )
 
         path = None
-        # set path to absolute icon path if found
+        # set path to absolute icon path if found.
         for directory in svg_icons_dirs:
             svg_path = Path(directory) / svg_name
             if svg_path.is_file():
@@ -93,36 +95,34 @@ class ClipNode(Node):
             logger.warning(message)
             return ""
 
-        # I don't find no case for returning multiple paths, so ommited
-        # If multiple paths found return the first one
+        # I don't find no case for returning multiple paths,
+        # so ommited this block.
+        # If multiple paths found return the first one.
         # if isinstance(path, (list, tuple)):
         #     path = path[0]
 
-        with open(path, encoding="utf-8") as f:
-            raw_svg = f.read()
+        with open(path, encoding="utf-8") as file:
+            raw_svg = file.read()
 
         # Get the attributes from the svg and concatenate
-        # with the user provided attrs
+        # with the user provided attrs from the tag
         new_attrs: dict = kwargs | SVGParser().extract(raw_svg)
 
-        svghead = r"<svg "
+        # Join the dictionary to form 'key="value"' pair string
+        kw_attrs = " ".join(f'{k}="{v}"' for k, v in new_attrs.items())
+        attrs = " ".join(args)
 
-        for key, value in new_attrs.items():
-            svghead += f' {key}="{value}"'
-
-        if len(args) != 0:
-            for arg in args:
-                svghead += f" {arg}"
-
-        new_svgtag = svghead + ">"
-
-        svg = re.sub(svgtag, new_svgtag, raw_svg)
-
-        return svg
+        # Return the safestring with new svg starttag
+        return mark_safe(
+            re.sub(svgtag, r"<svg " + kw_attrs + attrs + ">", raw_svg)
+        )
 
 
 @register.tag
 def clip(parser, token):
+    """
+    Render the svg icon along with user provided attributes
+    """
     bits = token.split_contents()
     if len(bits) < 2:
         raise TemplateSyntaxError(

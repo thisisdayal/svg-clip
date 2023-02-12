@@ -37,6 +37,7 @@ lint:             ## Run pep8, black, mypy linters.
 	$(ENV_PREFIX)black -l 79 --check svg_clip/
 	$(ENV_PREFIX)black -l 79 --check tests/
 	$(ENV_PREFIX)mypy --ignore-missing-imports svg_clip/
+	$(ENV_PREFIX)pylint svg_clip/
 
 .PHONY: test
 test: lint        ## Run tests and generate coverage report.
