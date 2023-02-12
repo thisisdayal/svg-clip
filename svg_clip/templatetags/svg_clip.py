@@ -90,9 +90,8 @@ class ClipNode(Node):
             message = f"SVG {svg_name} not found!"
             if settings.DEBUG:
                 raise SVGIconNotFound(message)
-            else:
-                logger.warning(message)
-                return ""
+            logger.warning(message)
+            return ""
 
         # I don't find no case for returning multiple paths, so ommited
         # If multiple paths found return the first one
@@ -101,19 +100,15 @@ class ClipNode(Node):
 
         with open(path, encoding="utf-8") as f:
             raw_svg = f.read()
-            # Get the attributes from the svg
-            old_attrs = SVGParser().extract(raw_svg)
 
-        new_attrs: dict = kwargs
+        # Get the attributes from the svg and concatenate
+        # with the user provided attrs
+        new_attrs: dict = kwargs | SVGParser().extract(raw_svg)
 
         svghead = r"<svg "
 
-        for k, v in new_attrs.items():
-            if k not in old_attrs and k is not None:
-                svghead += f' {k}="{v}"'
-
-        for k, v in old_attrs.items():
-            svghead += f' {k}="{v}"'
+        for key, value in new_attrs.items():
+            svghead += f' {key}="{value}"'
 
         if len(args) != 0:
             for arg in args:
