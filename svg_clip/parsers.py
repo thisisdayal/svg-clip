@@ -22,11 +22,12 @@ class SVGParser(HTMLParser):
         self.attrs: dict[str, str | None] = {}
 
     def handle_starttag(self, tag, attrs) -> None:
-        # if tag is svg then populate self.attrs
+        "if tag is svg then populate self.attrs"
         if tag == "svg":
             self.attrs = dict(attrs)
         return super().handle_starttag(tag, attrs)
 
     def extract(self, data: str) -> dict[str, str | None]:
+        "Return the attributes of svg tag."
         self.feed(data)
         return self.attrs

@@ -1,6 +1,7 @@
 # This requirements are for development and testing only, not for production.
 pytest
 coverage
+django
 flake8
 black
 isort
@@ -10,4 +11,3 @@ mypy
 gitchangelog
 mkdocs
 tox
-build
