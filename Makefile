@@ -96,9 +96,9 @@ docs:             ## Build the documentation.
 	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
 
 .PHONY: build
-build:             ## Build the documentation.
+build:             ## Build the package.
 	@echo "building dist ..."
-	@$(ENV_PREFIX)python -m build -nx
+	@$(ENV_PREFIX)python -m build 
 
 .PHONY: switch-to-poetry
 switch-to-poetry: ## Switch to poetry package manager.

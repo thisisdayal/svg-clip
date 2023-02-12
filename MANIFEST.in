@@ -4,6 +4,8 @@ include README.md
 include LICENSE.rst
 include MANIFEST.in
 include tox.ini
+include requirements.txt
+include requirements-test.txt
 
 graft tests
 graft svg_clip
