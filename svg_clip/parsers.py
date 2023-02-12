@@ -16,19 +16,17 @@ class SVGParser(HTMLParser):
     attributes to self.attrs.
     non-keyword attributes are added with None as value."""
 
-    def __init__(self, *, convert_charrefs: bool = ...) -> None:
+    def __init__(self, *, convert_charrefs: bool = True) -> None:
         super().__init__(convert_charrefs=convert_charrefs)
-        self.attrs = {}
+        # add attributes dict
+        self.attrs: dict[str, str | None] = {}
 
-    def feed(self, data: str) -> dict[str, str | None]:
-        super().feed(data)
-        return self.attrs
-
-    def handle_starttag(
-        self,
-        tag: str,
-        attrs: list[tuple[str, str | None]],
-    ) -> None:
+    def handle_starttag(self, tag, attrs) -> None:
+        # if tag is svg then populate self.attrs
         if tag == "svg":
             self.attrs = dict(attrs)
         return super().handle_starttag(tag, attrs)
+
+    def extract(self, data: str) -> dict[str, str | None]:
+        self.feed(data)
+        return self.attrs

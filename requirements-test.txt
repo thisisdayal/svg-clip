@@ -9,3 +9,5 @@ codecov
 mypy
 gitchangelog
 mkdocs
+tox
+build

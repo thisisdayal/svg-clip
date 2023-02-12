@@ -133,3 +133,4 @@ dmypy.json
 
 # Non-important developer todo list
 .TODO
+.vscode/

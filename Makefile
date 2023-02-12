@@ -94,6 +94,11 @@ docs:             ## Build the documentation.
 	@$(ENV_PREFIX)mkdocs build
 	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
 
+.PHONY: build
+build:             ## Build the documentation.
+	@echo "building dist ..."
+	@$(ENV_PREFIX)python -m build -nx
+
 .PHONY: switch-to-poetry
 switch-to-poetry: ## Switch to poetry package manager.
 	@echo "Switching to poetry ..."

@@ -1,4 +1,5 @@
 import sys
+
 import pytest
 
 
@@ -12,3 +13,22 @@ def go_to_tmpdir(request):
     # Chdir only for the duration of the test.
     with tmpdir.as_cwd():
         yield
+
+
+@pytest.fixture(scope="session")
+def settings():
+    import django
+    from django.conf import settings
+
+    settings.configure(
+        DEBUG=True,
+        INSTALLED_APPS=["svg_clip"],
+        SECRET_KEY="dev",
+        TEMPLATES=[
+            {"BACKEND": "django.template.backends.django.DjangoTemplates"}
+        ],
+    )
+    # To make sure settings is loaded before accessing settings variable
+    django.setup()
+
+    yield

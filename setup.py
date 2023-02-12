@@ -1,4 +1,4 @@
-"""Python setup.py for svg_clip package"""
+"""Python setup.py for django-svg-clip package"""
 import io
 import os
 from setuptools import find_packages, setup
@@ -30,17 +30,14 @@ def read_requirements(path):
 
 
 setup(
-    name="svg_clip",
+    name="django-svg-clip",
     version=read("svg_clip", "VERSION"),
-    description="Awesome svg_clip created by thisisdayal",
+    description="Django templatetags plugin for adding and manipulating SVG icons.",
     url="https://github.com/thisisdayal/svg-clip/",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    author="thisisdayal",
+    author="Dayal Moirangthem",
     packages=find_packages(exclude=["tests", ".github"]),
     install_requires=read_requirements("requirements.txt"),
-    entry_points={
-        "console_scripts": ["svg_clip = svg_clip.__main__:main"]
-    },
     extras_require={"test": read_requirements("requirements-test.txt")},
 )
