@@ -1,3 +1,9 @@
+"""
+Tests for SVG Clip
+
+We make the test names as elaborate as possible to avoid
+unnecessary comments.
+"""
 import pytest
 from html.parser import HTMLParser
 
@@ -73,6 +79,19 @@ class TestClipTag:
             '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
         )
 
+    def test_render_tag_with_kwargs_already_present(self, settings):
+        template = Template(
+            '{% load svg_clip %} {% clip "arrow-down" class="h-6 w-6" aria-hidden="true" %}'
+        )
+        assert HTMLParser().feed(
+            template.render(self.context)
+        ) == HTMLParser().feed(
+            '<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" '
+            'stroke-width="1.5" stroke="currentColor" aria-hidden="true"> '
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 '
+            '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
+        )
+
     def test_render_tag_with_args(self, settings):
         template = Template(
             '{% load svg_clip %} {% clip "arrow-down" "hidden" %}'
@@ -114,14 +133,20 @@ class TestClipTag:
             template = Template('{% load svg_clip %} {% clip "arrow-down" %}')
             template.render(self.context)
 
-    def test_svg_icons_dir_not_found(self, settings):
+    def test_svg_icons_dir_not_set(self, settings):
+        SETTINGS.USE_CLIP_ICONS = False
+        with pytest.raises(ImproperlyConfigured):
+            template = Template('{% load svg_clip %} {% clip "flying-jet" %}')
+            template.render(self.context)
+
+    def test_svg_icon_not_found(self, settings):
         SETTINGS.USE_CLIP_ICONS = True
         with pytest.raises(SVGIconNotFound):
             template = Template('{% load svg_clip %} {% clip "flying-jet" %}')
             template.render(self.context)
 
-    def test_svg_icons_dir_not_found_not_debug_mode(self, settings):
-        # Should not raise error instead raise warning to log
+    def test_svg_icon_not_found_production(self, settings):
+        # Should not raise error, instead log warning in production
         SETTINGS.DEBUG = False
         SETTINGS.USE_CLIP_ICONS = True
         template = Template('{% load svg_clip %} {% clip "flying-jet" %}')
@@ -137,6 +162,7 @@ class TestClipTag:
 
     def test_svg_clip_malinformed_arguments(self, settings):
         SETTINGS.USE_CLIP_ICONS = True
+        # Malinformed arguments
         with pytest.raises(TemplateSyntaxError):
             template = Template(
                 '{% load svg_clip %} {% clip "arrow-down" class="$$" %}'
