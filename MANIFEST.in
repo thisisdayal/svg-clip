@@ -1,14 +1,15 @@
 include CHANGELOG.rst
-include Containerfile
 include README.md
-include LICENSE.rst
+include LICENSE.*
 include MANIFEST.in
 include tox.ini
 include requirements.txt
 include requirements-test.txt
+include svg_clip.VERSION
+include pylintrc
 
 graft tests
 graft svg_clip
 
-global-exclude *.py[co] *.py[cod]
+global-exclude *~ *.py[co] *.py[cod]
 global-exclude __pycache__

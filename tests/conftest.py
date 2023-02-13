@@ -1,6 +1,9 @@
+"""Fixtures for pytest."""
 import sys
 
+import django
 import pytest
+from django.conf import settings as conf
 
 
 # each test runs on cwd to its temp dir
@@ -17,10 +20,7 @@ def go_to_tmpdir(request):
 
 @pytest.fixture(scope="session")
 def settings():
-    import django
-    from django.conf import settings
-
-    settings.configure(
+    conf.configure(
         DEBUG=True,
         INSTALLED_APPS=["svg_clip"],
         SECRET_KEY="dev",

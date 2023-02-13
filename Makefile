@@ -25,23 +25,26 @@ install:          ## Install the project in dev mode.
 	@echo "Don't forget to run 'make virtualenv' if you got errors."
 	$(ENV_PREFIX)pip install -e .[test]
 
+.PHONY: build
+build:             ## Build the package.
+	@echo "building dist ..."
+	@$(ENV_PREFIX)python -m build 
+
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
-	$(ENV_PREFIX)isort svg_clip/
-	$(ENV_PREFIX)black -l 79 svg_clip/
-	$(ENV_PREFIX)black -l 79 tests/
+	$(ENV_PREFIX)tox p -e isort
+	$(ENV_PREFIX)tox p -e black
 
 .PHONY: lint
 lint:             ## Run pep8, black, mypy linters.
-	$(ENV_PREFIX)flake8 svg_clip/
-	$(ENV_PREFIX)black -l 79 --check svg_clip/
-	$(ENV_PREFIX)black -l 79 --check tests/
-	$(ENV_PREFIX)mypy --ignore-missing-imports svg_clip/
-	$(ENV_PREFIX)pylint svg_clip/
+	$(ENV_PREFIX)tox p -e flake8
+	$(ENV_PREFIX)tox p -e black
+	$(ENV_PREFIX)tox p -e mypy
+	$(ENV_PREFIX)tox p -e pylint
 
 .PHONY: test
-test: lint        ## Run tests and generate coverage report.
-	$(ENV_PREFIX)tox run 
+test:lint             ## Run tests and generate coverage report.
+	$(ENV_PREFIX)tox p
 	$(ENV_PREFIX)coverage xml
 	$(ENV_PREFIX)coverage html
 
@@ -81,8 +84,8 @@ release:          ## Create a new tag for release.
 	@echo "WARNING: This operation will create s version tag and push to github"
 	@read -p "Version? (provide the next x.y.z semver) : " TAG
 	@echo "$${TAG}" > svg_clip/VERSION
-	@$(ENV_PREFIX)gitchangelog > HISTORY.md
-	@git add svg_clip/VERSION HISTORY.md
+	@$(ENV_PREFIX)gitchangelog > CHANGELOG.rst
+	@git add svg_clip/VERSION CHANGELOG.rst
 	@git commit -m "release: version $${TAG} 🚀"
 	@echo "creating git tag : $${TAG}"
 	@git tag $${TAG}
@@ -94,11 +97,6 @@ docs:             ## Build the documentation.
 	@echo "building documentation ..."
 	@$(ENV_PREFIX)mkdocs build
 	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
-
-.PHONY: build
-build:             ## Build the package.
-	@echo "building dist ..."
-	@$(ENV_PREFIX)python -m build 
 
 .PHONY: switch-to-poetry
 switch-to-poetry: ## Switch to poetry package manager.

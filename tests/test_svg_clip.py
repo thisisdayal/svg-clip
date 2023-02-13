@@ -16,6 +16,8 @@ from svg_clip.exceptions import SVGIconNotFound
 
 
 class TestClipNode:
+    """Test for ClipNode."""
+
     def test_clip_node(self) -> None:
         # test typical ClipNode with all arguments
         assert (
@@ -26,8 +28,8 @@ class TestClipNode:
                     kwargs={"class": "h-6 w-6 text-green-500"},
                 )
             )
-            == "<ClipNode svg_name='academic-cap.svg' args=['required', 'hidden'] "
-            "kwargs={'class': 'h-6 w-6 text-green-500'}>"
+            == "<ClipNode svg_name='academic-cap.svg' args=['required', "
+            "'hidden'] kwargs={'class': 'h-6 w-6 text-green-500'}>"
         )
 
     def test_ClipNode_with_no_args_and_kwargs(self):
@@ -50,20 +52,24 @@ class TestClipNode:
 
 
 class TestClipTag:
+    """Test for template tag."""
+
     context = Context()
 
     def test_render_tag_with_args_and_kwargs(self, settings):
         SETTINGS.USE_CLIP_ICONS = True
         template = Template(
-            '{% load svg_clip %} {% clip "arrow-down" class="h-6 w-6" "hidden" %}'
+            '{% load svg_clip %} {% clip "arrow-down" '
+            'class="h-6 w-6" "hidden" %}'
         )
         assert HTMLParser().feed(
             template.render(self.context)
         ) == HTMLParser().feed(
-            '<svg class="h-6 w-6" hidden xmlns="http://www.w3.org/2000/svg" fill="none" '
-            'viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"> '
-            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 '
-            '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
+            '<svg class="h-6 w-6" hidden xmlns="http://www.w3.org/2000/svg" '
+            'fill="none" viewBox="0 0 24 24" stroke-width="1.5" '
+            'stroke="currentColor" aria-hidden="true"> <path '
+            'stroke-linecap="round" stroke-linejoin="round" '
+            'd="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
         )
 
     def test_render_tag_with_kwargs(self, settings):
@@ -73,23 +79,26 @@ class TestClipTag:
         assert HTMLParser().feed(
             template.render(self.context)
         ) == HTMLParser().feed(
-            '<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" '
-            'stroke-width="1.5" stroke="currentColor" aria-hidden="true"> '
-            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 '
-            '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
+            '<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" '
+            'fill="none" viewBox="0 0 24 24" stroke-width="1.5" '
+            'stroke="currentColor" aria-hidden="true"> <path '
+            'stroke-linecap="round" stroke-linejoin="round" '
+            'd="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
         )
 
     def test_render_tag_with_kwargs_already_present(self, settings):
         template = Template(
-            '{% load svg_clip %} {% clip "arrow-down" class="h-6 w-6" aria-hidden="true" %}'
+            '{% load svg_clip %} {% clip "arrow-down" '
+            'class="h-6 w-6" aria-hidden="true" %}'
         )
         assert HTMLParser().feed(
             template.render(self.context)
         ) == HTMLParser().feed(
-            '<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" '
-            'stroke-width="1.5" stroke="currentColor" aria-hidden="true"> '
-            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 '
-            '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
+            '<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" '
+            'fill="none" viewBox="0 0 24 24" stroke-width="1.5" '
+            'stroke="currentColor" aria-hidden="true"> <path '
+            'stroke-linecap="round" stroke-linejoin="round" '
+            'd="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
         )
 
     def test_render_tag_with_args(self, settings):
@@ -99,10 +108,11 @@ class TestClipTag:
         assert HTMLParser().feed(
             template.render(self.context)
         ) == HTMLParser().feed(
-            '<svg hidden xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" '
-            'stroke-width="1.5" stroke="currentColor" aria-hidden="true"> '
-            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 '
-            '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
+            '<svg hidden xmlns="http://www.w3.org/2000/svg" '
+            'fill="none" viewBox="0 0 24 24" stroke-width="1.5" '
+            'stroke="currentColor" aria-hidden="true"> <path '
+            'stroke-linecap="round" stroke-linejoin="round" '
+            'd="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
         )
 
     def test_render_tag_with_no_args_and_kwargs(self, settings):
@@ -110,10 +120,11 @@ class TestClipTag:
         assert HTMLParser().feed(
             template.render(self.context)
         ) == HTMLParser().feed(
-            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" '
-            'stroke-width="1.5" stroke="currentColor" aria-hidden="true"> '
-            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 '
-            '13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>'
+            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" '
+            'viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" '
+            'aria-hidden="true"> <path stroke-linecap="round" '
+            'stroke-linejoin="round" d="M19.5 13.5L12 '
+            '21m0 0l-7.5-7.5M12 21V3"/></svg>'
         )
 
     def test_render_tag_with_no_arguments(self, settings):
