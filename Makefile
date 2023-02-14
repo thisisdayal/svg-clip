@@ -28,7 +28,7 @@ install:          ## Install the project in dev mode.
 .PHONY: build
 build:             ## Build the package.
 	@echo "building dist ..."
-	@$(ENV_PREFIX)python -m build 
+	@$(ENV_PREFIX)python -m build
 
 .PHONY: fmt
 fmt:              ## Format code using black & isort.
@@ -43,7 +43,7 @@ lint:             ## Run pep8, black, mypy linters.
 	$(ENV_PREFIX)tox p -e pylint
 
 .PHONY: test
-test:lint             ## Run tests and generate coverage report.
+test:             ## Run tests and generate coverage report.
 	$(ENV_PREFIX)tox p
 	$(ENV_PREFIX)coverage xml
 	$(ENV_PREFIX)coverage html
@@ -84,19 +84,13 @@ release:          ## Create a new tag for release.
 	@echo "WARNING: This operation will create s version tag and push to github"
 	@read -p "Version? (provide the next x.y.z semver) : " TAG
 	@echo "$${TAG}" > svg_clip/VERSION
-	@$(ENV_PREFIX)gitchangelog > CHANGELOG.rst
-	@git add svg_clip/VERSION CHANGELOG.rst
+	@$(ENV_PREFIX)gitchangelog > CHANGELOG.md
+	@git add svg_clip/VERSION CHANGELOG.md
 	@git commit -m "release: version $${TAG} 🚀"
 	@echo "creating git tag : $${TAG}"
 	@git tag $${TAG}
 	@git push -u origin HEAD --tags
 	@echo "Github Actions will detect the new tag and release the new version."
-
-.PHONY: docs
-docs:             ## Build the documentation.
-	@echo "building documentation ..."
-	@$(ENV_PREFIX)mkdocs build
-	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL
 
 .PHONY: switch-to-poetry
 switch-to-poetry: ## Switch to poetry package manager.

@@ -4,3 +4,5 @@ django
 pytest-cov
 codecov
 gitchangelog
+pystache
+tox

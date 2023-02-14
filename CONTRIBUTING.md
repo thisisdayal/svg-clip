@@ -1,89 +1,74 @@
-How to develop on this project
-==============================
+# How to develop on this project
 
-svg_clip welcomes contributions from the community.
+django-svg-clip welcomes contributions from the community.
 
 **You need PYTHON3!**
 
 This instructions are for linux base systems. (Linux, MacOS, BSD, etc.)
 
-Setting up your own fork of this repo.
---------------------------------------
+## Setting up your own fork of this repo.
 
 - On github interface click on `Fork` button.
 - Clone your fork of this repo. `git clone git@github.com:YOUR_GIT_USERNAME/svg-clip.git`
 - Enter the directory `cd svg-clip`
 - Add upstream repo `git remote add upstream https://github.com/thisisdayal/svg-clip`
 
-Setting up your own virtual environment
----------------------------------------
+## Setting up your own virtual environment
 
 Run `make virtualenv` to create a virtual environment.
 then activate it with `source .venv/bin/activate`.
 
-Install the project in develop mode
------------------------------------
+## Install the project in develop mode
 
 Run `make install` to install the project in develop mode.
 
-Run the tests to ensure everything is working
----------------------------------------------
+## Run the tests to ensure everything is working
 
 Run `make test` to run the tests.
 
-Create a new branch to work on your contribution
-------------------------------------------------
+## Create a new branch to work on your contribution
 
 Run `git checkout -b my_contribution`
 
-Make your changes
------------------
+## Make your changes
 
 Edit the files using your preferred editor. (we recommend VIM or VSCode)
 
-Format the code
----------------
+## Format the code
 
 Run `make fmt` to format the code.
 
-Run the linter
---------------
+## Run the linter
 
 Run `make lint` to run the linter.
 
-Test your changes
------------------
+## Test your changes
 
 Run `make test` to run the tests.
 
 Ensure code coverage report shows `100%` coverage, add tests to your PR.
 
-Build the source distribution and binary distribution
------------------------------------------------------
+## Build the source distribution and binary distribution
 
 Run `make build` to build the source and binary distribution.
 
-Commit your changes
--------------------
+## Commit your changes
 
 This project uses [conventional git commit messages](https://www.conventionalcommits.org/en/v1.0.0/).
 
 Example: `fix(package): update setup.py arguments 🎉` (emojis are fine too)
 
-Push your changes to your fork
-------------------------------
+## Push your changes to your fork
 
 Run `git push origin my_contribution`
 
-Submit a pull request
----------------------
+## Submit a pull request
 
 On github interface, click on `Pull Request` button.
 
 Wait CI to run and one of the developers will review your PR.
 
-Makefile utilities
-------------------
+## Makefile utilities
 
 This project comes with a `Makefile` that contains a number of useful utility.
 
@@ -105,8 +90,7 @@ release:          ## Create a new tag for release.
 switch-to-poetry: ## Switch to poetry package manager.
 ```
 
-Making a new release
---------------------
+## Making a new release
 
 This project uses [semantic versioning](https://semver.org/) and tags releases with `X.Y.Z`
 Every time a new tag is created and pushed to the remote repo, github actions will
