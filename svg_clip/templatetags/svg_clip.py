@@ -106,7 +106,7 @@ class ClipNode(Node):
 
         # Get the attributes from the svg and concatenate
         # with the user provided attrs from the tag
-        new_attrs: dict = kwargs | SVGParser().extract(raw_svg)
+        new_attrs: dict = {**kwargs, **SVGParser().extract(raw_svg)}
 
         # Join the dictionary to form 'key="value"' pair string
         kw_attrs = " ".join(f'{k}="{v}"' for k, v in new_attrs.items())
