@@ -24,8 +24,8 @@
 
 - Adding static and dynamic attributes to svg icons.
 - You don't have to paste the whole svg tag to add atrributes such as classes, inline-styles, WAI-arias.
-- Makes the template look cleaner and shorter.
-- Increases the readability.
+- Make the templates look cleaner and shorter.
+- Increases readability.
 
 ## Installation
 
