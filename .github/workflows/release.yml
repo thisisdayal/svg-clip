@@ -13,7 +13,6 @@ jobs:
   release:
     name: Create Release
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - uses: actions/checkout@v2
         with:
@@ -30,7 +29,6 @@ jobs:
   deploy:
     needs: release
     runs-on: ubuntu-latest
-    environment: production
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
