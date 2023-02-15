@@ -6,6 +6,18 @@
   <br>
 </h1>
 
+<div align="center">
+  <a href="https://codecov.io/gh/thisisdayal/svg-clip" >
+    <img src="https://codecov.io/gh/thisisdayal/svg-clip/branch/main/graph/badge.svg?token=VPY6PPFO1I"/>
+  </a>
+  <a href="https://github.com/thisisdayal/svg-clip/actions/workflows/main.yml">
+    <img src="https://github.com/thisisdayal/svg-clip/actions/workflows/main.yml/badge.svg"/>
+  </a>
+  <a href="https://github.com/thisisdayal/svg-clip/actions/workflows/release.yml">
+    <img src="https://github.com/thisisdayal/svg-clip/actions/workflows/release.yml/badge.svg"/>
+  </a>
+</div>
+
 <p align="center">Django-svg-clip is a django template tags plugin for manipulating and rendering of svg and its attributes.</p>
 
 ## Features
@@ -104,8 +116,6 @@ Name: **Dayal Moirangthem**\
 Twitter: [@thisisdayal](https://twitter.com/thisisdayal)
 
 ## Acknowledgement and credits
-
----
 
 [**Heroicons**](https://heroicons.com/): By default, we use icon set provided by heroicons with a minimal tweaks in icon names. For example, let us say `academic-cap.svg`. For outline version, there is no modification but for solid, you should use `academic-cap-solid.svg`.This is done to avoid name conflicts with outline and solid versions.
 

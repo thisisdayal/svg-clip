@@ -177,6 +177,6 @@ class TestClipTag:
     #     # Malinformed arguments
     #     with pytest.raises(TemplateSyntaxError):
     #         template = Template(
-    #             '{% load svg_clip %} {% clip "arrow-down" .="this" %}'
+    #             '{% load svg_clip %} {% clip "arrow-down" class="<>" %}'
     #         )
     #         template.render(self.context)
