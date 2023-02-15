@@ -3,11 +3,32 @@
 
 ## (unreleased)
 
+### Other
+
+* CI: updated main.yml to use latest actions. [Dayal Moirangthem]
+
+* CI: updated release.yml and rename_project.yml to use latest actions. [Dayal Moirangthem]
+
+* CI: added production environment to release.yml. [Dayal Moirangthem]
+
+* Chore: update README.md. [Dayal Moirangthem]
+
+* Delete static-pages.yml. [Dayal Moirangthem]
+
+* Create static-pages.yml. [Dayal Moirangthem]
+
+* Chore: README.md typo fix. [Dayal Moirangthem]
+
+
+## 1.0.0 (2023-02-15)
+
 ### Fix
 
 * Updated kwargs_re to match all unicode characters. [Dayal Moirangthem]
 
 ### Other
+
+* Release: version 1.0.0 🚀 [Dayal Moirangthem]
 
 * Chore: minor fixes. [Dayal Moirangthem]
 
