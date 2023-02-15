@@ -117,7 +117,7 @@ Twitter: [@thisisdayal](https://twitter.com/thisisdayal)
 
 ## Acknowledgement and credits
 
-[**Heroicons**](https://heroicons.com/): By default, we use icon set provided by heroicons with a minimal tweaks in icon names. For example, let us say `academic-cap.svg`. For outline version, there is no modification but for solid, you should use `academic-cap-solid.svg`.This is done to avoid name conflicts with outline and solid versions.
+[**Heroicons**](https://heroicons.com/): By default, we use icon set provided by heroicons with a minimal tweaks in icon names. For example, `academic-cap.svg`, there is no modification for outline version, just use `academic-cap`(without ".svg" extension) but for solid, you should use `academic-cap-solid`(without ".svg" extension) .This is done to avoid naming conflicts with outline and solid versions.
 
 We'd like to show our regards to tailwindlabs team for availing those icons to community with an open source license.
 
