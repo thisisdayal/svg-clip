@@ -5,6 +5,15 @@
 
 ### Other
 
+* Wip: workflow testing. [Dayal Moirangthem]
+
+
+## 1.0.2 (2023-02-17)
+
+### Other
+
+* Release: version 1.0.2 🚀 [Dayal Moirangthem]
+
 * Chore: updated workflow files. [Dayal Moirangthem]
 
 
