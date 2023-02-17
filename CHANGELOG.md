@@ -5,6 +5,15 @@
 
 ### Other
 
+* Chore: updated workflow files. [Dayal Moirangthem]
+
+
+## 1.0.1 (2023-02-15)
+
+### Other
+
+* Release: version 1.0.1 🚀 [Dayal Moirangthem]
+
 * CI: updated main.yml to use latest actions. [Dayal Moirangthem]
 
 * CI: updated release.yml and rename_project.yml to use latest actions. [Dayal Moirangthem]
