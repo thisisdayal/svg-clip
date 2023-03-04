@@ -122,3 +122,7 @@ Twitter: [@thisisdayal](https://twitter.com/thisisdayal)
 We'd like to show our regards to tailwindlabs team for availing those icons to community with an open source license.
 
 [**Python project template**](https://github.com/rochacbruno/python-project-template/): We use `rochacbruno`'s python project template with little modification. It saves us a lot of time and headache during initial setup.
+
+## Support this project ❤️
+
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="moviequotes" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a caffeine" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
