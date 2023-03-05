@@ -125,4 +125,6 @@ We'd like to show our regards to tailwindlabs team for availing those icons to c
 
 ## Support this project ❤️
 
-[Buy me a coffee](https://www.buymeacoffee.com/thisisdayal)
+<a href="https://www.buymeacoffee.com/thisisdayal" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174">
+</a>
